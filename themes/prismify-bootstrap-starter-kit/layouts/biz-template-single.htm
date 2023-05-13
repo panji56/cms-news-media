@@ -1,0 +1,63 @@
+[postView newsarticle]
+slug = "{{ :slug }}"
+
+[postsList TrendingNews]
+limit = 5
+page = 1
+tag = "trending"
+
+[postsList TrendingText]
+limit = 5
+page = 1
+tag = "trending"
+==
+{% partial "biz/header.htm" %}
+
+<body>
+    
+    {% partial "biz/topbar.htm" %}
+    
+    {% partial "biz/navbar.htm" %}
+
+    <!-- news with sidebar start -->
+
+    {% component 'TrendingText' %}
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+
+                    {% component 'newsarticle' %}
+
+                    {# {% partial "biz/comment.htm" %}
+
+                    {% partial "biz/comment-form.htm" %} #}
+
+                </div>
+                <div class="col-lg-4">
+                    
+                    {% partial "biz/Social-Follow.htm" %}
+
+                    {% partial "biz/ads.htm" %}
+                    
+                    {% component 'TrendingNews' %}
+
+                    {% partial "biz/newsletter.htm" %}
+
+                    {% partial "biz/tags.htm" %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- news with sidebar end -->
+
+    {% partial "biz/footer.htm" %}
+    
+    {% partial "biz/jslibrary.htm" %}
+
+</body>
+
+</html>

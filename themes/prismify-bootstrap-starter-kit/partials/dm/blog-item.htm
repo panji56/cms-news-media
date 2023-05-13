@@ -1,0 +1,27 @@
+[viewBag]
+==
+<article class="card mt-3 post-item post-item-{{ post.id }} border-bottom border-dark {% if post.type == 'post' %}post-item--full{% else %}post-item--status{% endif %}">
+    {% if post.type == 'post' %}
+    {% if post.image is not empty %}
+    <div class="card-img-top">
+        <a href="{{ 'dm/blogview' | page({ slug: post.slug }) }}">
+            <img src="{{ post.image.getThumb(700, 400) }}" class="img-fluid" alt="{{ post.image.name }}" loading="lazy">
+        </a>
+    </div>
+    {% endif %}
+    <header class="post-item__header card-header">
+        <h3>
+            <a href="{{ 'dm/blogview' | page({ slug: post.slug }) }}" class="post-item__link card-link">
+                {{ post.name }}
+            </a>
+        </h3>
+        {% partial 'dm/blog-sum' post = post fromList = true %}
+    </header>
+    
+    <section class="post-item__text card-body">
+        {{ post.small_text }}
+    </section>
+    {% else %}
+        {{ post.name }}
+    {% endif %}
+</article>

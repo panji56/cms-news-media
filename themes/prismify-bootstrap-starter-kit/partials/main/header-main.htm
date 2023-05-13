@@ -1,0 +1,25 @@
+==
+function onStart()
+{
+    $this['backendUrl'] = Backend::url('/');
+}
+==
+<div class="container-fluid">
+    <div class="row bg-dark">
+        {{ backendUrl }}
+    </div>
+    <div class="row bg-success">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id = "navbarNavAltMarkup">
+                <ul class="navbar-nav pl-2 pr-2">
+                    <li class="navbar-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
