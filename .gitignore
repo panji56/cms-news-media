@@ -1,5 +1,5 @@
 # Composer ignores
-vendor/
+/vendor
 composer.phar
 composer.lock
 composer.json
@@ -35,7 +35,7 @@ _ide_helper.php
 # Other ignores
 .DS_Store
 package-lock.json
-node_modules/
+/node_modules
 
 # Ignore generated public directory from `winter:mirror public`
 public
