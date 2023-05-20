@@ -8,7 +8,6 @@ composer.json
 CMS_App_Panji
 error_log
 
-
 # Framework ignores
 .env
 .env.*.php
