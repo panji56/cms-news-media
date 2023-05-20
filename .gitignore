@@ -1,7 +1,10 @@
 # Composer ignores
-#/vendor
-#composer.phar
-#composer.lock
+vendor/
+composer.phar
+composer.lock
+composer.json
+config/
+*.txt
 
 # Framework ignores
 .env
@@ -28,8 +31,8 @@ _ide_helper.php
 
 # Other ignores
 .DS_Store
-#package-lock.json
-#/node_modules
+package-lock.json
+node_modules/
 
 # Ignore generated public directory from `winter:mirror public`
 public
