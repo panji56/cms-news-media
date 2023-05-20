@@ -1,0 +1,49 @@
+[postsList TrendingNews]
+limit = 5
+page = 1
+tag = "trending"
+==
+{% partial "biz/header.htm" %}
+
+<body>
+    
+    {% partial "biz/topbar.htm" %}
+    
+    {% partial "biz/navbar.htm" %}
+    
+    <!-- news sidebar start -->
+
+    <div class="container-fluid mt-5 pt-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    {% partial "biz/news-sidebar.htm" %}
+                </div>
+
+                <div class="col-lg-4">
+
+                    {% partial "biz/Social-Follow.htm" %}
+
+                    {% partial "biz/ads.htm" %}
+
+                    {% component 'TrendingNews' %}
+                    
+                    {% partial "biz/newsletter.htm" %}
+
+                    {% partial "biz/tags.htm" %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- news sidebar end -->
+
+    {% partial "biz/footer.htm" %}
+    
+    {% partial "biz/jslibrary.htm" %}
+
+</body>
+
+</html>

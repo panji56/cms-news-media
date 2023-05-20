@@ -1,0 +1,56 @@
+[viewBag]
+==
+<div id="{{ __SELF__ }}-comments">
+    <div class="dimsog-comments-wrapper">
+        <div id="{{ __SELF__ }}-comments-list" class="dimsog-comments-list mb-3">
+            {{ comments | raw }}
+        </div>
+        <div class="section-title mb-0">
+            <h4 class="m-0 text-uppercase font-weight-bold">Leave a comment</h4>
+        </div>
+        <div class="dimsog-comments-form-wrapper mb-3 bg-white border border-top-0 p-4">
+            {% if onlyForAuthUsers and userPluginIsExists == false %}
+                {% partial '@flash/errors.htm' message = 'dimsog.comments::lang.components.comments.validator.please_install_user_plugin' %}
+            {% endif %}
+            {% if showCommentsForm %}
+            <form class="dimsog-comment-form" id="{{ __SELF__ }}-comment-form" data-request="{{ __SELF__ }}::onCommentStore" data-request-success="onDimsogCommentsSendSuccess(document.querySelector('#{{ __SELF__ }}-comment-form'))" method="POST">
+                <input type="hidden" name="parent_id" value="">
+                <div id="{{ __SELF__ }}-flash" class="app-dimsog-comment-form__flash"></div>
+                <div class="app-dimsog-comment-form-answer-block"></div>
+                    {% if userIsGuest or onlyForAuthUsers == false %}
+                    <div class="form-row">
+                        <div class="col-sm-6">
+                            <div class="dimsog-comment-form-field dimsog-comment-form-field--user-name form-group">
+                                <input type="text" name="name" placeholder="{{ 'dimsog.comments::lang.components.comments.views.your_name' | trans }}" class="dimsog-comment-form-field__input form-control" required>
+                            </div>
+                        </div>
+                        {% if properties.email %}
+                        <div class="col-sm-6">
+                            <div class="dimsog-comment-form-field dimsog-comment-form-field--user-email form-group">
+                                <input type="email" name="email" placeholder="{{ 'dimsog.comments::lang.components.comments.views.your_email' | trans }}" class="dimsog-comment-form-field__input form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                        {% endif %}
+                    {% endif %}
+                    <div class="dimsog-comment-form-field dimsog-comment-form-field--comment form-group">
+                        <textarea name="comment" placeholder="{{ 'dimsog.comments::lang.components.comments.views.text' | trans }}" class="dimsog-comment-form-field__input form-control" cols="30" rows="6" required></textarea>
+                    </div>
+                    <div class="dimsog-comment-form-field dimsog-comment-form-field-button form-group">
+                        <button type="submit" class="dimsog-comment-form-field__btn btn btn-primary font-weight-semi-bold py-2 px-3">
+                            {{ 'dimsog.comments::lang.components.comments.views.send' | trans }}
+                        </button>
+                    </div>
+            </form>
+            {% else %}
+                {% if userPluginIsExists %}
+                    <div class="dimsog-comment-form-please-login">
+                        {{ 'dimsog.comments::lang.components.comments.views.please_login' | trans }}
+                    </div>
+                {% else %}
+                    {{ 'dimsog.comments::lang.components.comments.views.form_disabled' | trans }}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>

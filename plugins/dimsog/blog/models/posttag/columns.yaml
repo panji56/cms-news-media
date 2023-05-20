@@ -1,0 +1,10 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: dimsog.blog::lang.models.posttag.columns.tag
+        relation: tag
+        select: name
+        width: '250px'

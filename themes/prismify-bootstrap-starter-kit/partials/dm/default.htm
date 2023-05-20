@@ -1,0 +1,9 @@
+[viewBag]
+==
+<section class="container-fluid border border-dark pb-3" style="max-height:50em;">
+    {% for post in items %}
+        {% partial 'dm/blog-item' post = post %}
+    {% endfor %}
+
+    {{ items.render | raw }}
+</section>

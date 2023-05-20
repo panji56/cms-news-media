@@ -1,0 +1,40 @@
+description = "layout for each post"
+
+[postView]
+slug = "{{ :slug }}"
+==
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+
+        <link rel="stylesheet" href="{{ 'assets/css/app.css'|theme }}">
+        {% styles %}
+
+        <title>{{ this.page.title }} - {{ this.theme.app_name }}</title>
+    </head>
+    <body class="app layout-{{ this.layout.id }} page-{{ this.page.id }} container-fluid">
+        <div class="row">
+        {% partial "main/header-main" %}
+        </div>
+        <div class="row">
+        {% component 'postView' %}
+        </div>
+        <div class="row">
+            {% page %}
+        </div>
+        <div class="row">
+        {% partial "main/footer-main" %}
+        </div>
+        <script type="text/javascript" src="{{ 'assets/js/manifest.js'|theme }}"></script>
+        <script type="text/javascript" src="{{ 'assets/js/vendor.js'|theme }}"></script>
+        <script type="text/javascript" src="{{ 'assets/js/app.js'|theme }}"></script>
+        
+        {% scripts %}
+        
+    </body>
+
+</html>

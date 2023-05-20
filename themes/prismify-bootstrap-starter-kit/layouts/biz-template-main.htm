@@ -1,0 +1,67 @@
+description = "news media template"
+
+[postsList TrendingNews]
+limit = 5
+page = 1
+tag = "trending"
+
+[postsList TrendingText]
+limit = 4
+page = 1
+tag = "trending"
+
+[postsList TrendingSlider]
+limit = 4
+page = 1
+tag = "trending"
+
+[postsList LatestNews]
+limit = 10
+page = 1
+
+[postsList breakingNews]
+limit = 5
+page = 1
+tag = "breaking"
+==
+{% partial "biz/header.htm" %}
+
+<body>
+
+    {% partial "biz/topbar.htm" %}
+    
+    {% partial "biz/navbar.htm" %}
+    
+    {% component 'TrendingSlider' %}
+
+    {% component 'breakingNews' %}
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    {% component 'LatestNews' %}
+                </div>
+                <div class="col-lg-4">
+                    {% partial "biz/Social-Follow.htm" %}
+                    
+                    {% partial "biz/ads.htm" %}
+
+                    {% component 'TrendingNews' %}
+                    
+                    {% partial "biz/newsletter.htm" %}
+
+                    {% partial "biz/tags.htm" %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% partial "biz/footer.htm" %}
+    
+    {% partial "biz/jslibrary.htm" %}
+
+</body>
+
+</html>
