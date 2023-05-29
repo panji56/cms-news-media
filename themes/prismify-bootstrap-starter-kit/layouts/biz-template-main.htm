@@ -11,18 +11,43 @@ page = 1
 tag = "trending"
 
 [postsList TrendingSlider]
-limit = 4
+limit = 7
 page = 1
 tag = "trending"
 
 [postsList LatestNews]
-limit = 10
+limit = 4
 page = 1
 
 [postsList breakingNews]
 limit = 5
 page = 1
 tag = "breaking"
+
+[postsList featuredNews]
+limit = 10
+page = 1
+tag = "featured"
+
+[postsList featuredCat]
+limit = 4
+page = 1
+tag = "news"
+
+[postsList featuredCat1]
+limit = 4
+page = 1
+tag = "sport"
+
+[postsList featuredCat2]
+limit = 4
+page = 1
+tag = "general-information"
+
+[postsList featuredCat3]
+limit = 4
+page = 1
+tag = "abk-interpretation"
 ==
 {% partial "biz/header.htm" %}
 
@@ -35,12 +60,37 @@ tag = "breaking"
     {% component 'TrendingSlider' %}
 
     {% component 'breakingNews' %}
+    
+    {% component 'featuredNews' %}
 
     <div class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    {% component 'LatestNews' %}
+                
+                    <div class="row">
+                        <div class="col">
+                            {% component 'LatestNews' %}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {% component 'featuredCat' %}
+                        </div>
+                        <div class="col-lg-6">
+                            {% component 'featuredCat1' %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {% component 'featuredCat2' %}
+                        </div>
+                        <div class="col-lg-6">
+                            {% component 'featuredCat3' %}
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="col-lg-4">
                     {% partial "biz/Social-Follow.htm" %}
