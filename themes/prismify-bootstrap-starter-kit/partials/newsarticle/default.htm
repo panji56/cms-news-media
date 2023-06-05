@@ -12,29 +12,17 @@
                             {{ post.category.name }}
                         </a>
                     </div>
-                    <div class="post-summary__item post-summary__item--date">
-                        <i class="far fa-calendar-alt"></i> {{ post.created_at | date('d.m.Y') }}
-                    </div>
-                    <div class="post-summary__item post-summary__item--views">
-                        <i class="fas fa-eye"></i>
-                        {{ post.views }}
-                    </div>
-                    <div class="post-summary__item post-summary__item--comments">
-                        <i class="fas fa-comment"></i>
-                        {% if fromList %}
-                            {{ counts }}
-                        {% else %}
-                            <span id="comments-count">{{ counts }}</span>
-                        {% endif %}
-                    </div>
+                    
                 </div>
             </div>
                 <h1 class="mb-3 text-secondary text-uppercase font-weight-bold">{{ post.name }}</h1>
+                <i class="far fa-calendar-alt"></i> {{ post.created_at | date('d.m.Y') }}
                 {% if post.image is not empty %}
                     <section class="post-item__image">
                         <img src="{{ post.image.getThumb(700, 400, { 'mode': 'crop' }) }}" class="img-fluid" alt="{{ post.image.name }}" loading="lazy">
                     </section>
                 {% endif %}
+                    
             {% for block in post.blocks %}
                 {% if block.type == 'text' %}
                     <div class="post-item-blocks__text">
@@ -52,6 +40,7 @@
                     </div>
                 {% endif %}
             {% endfor %}
+                <i class="fas fa-eye"></i> {{ post.views }}
                 <p> tags </p>
                 <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                     {% if post.tags is not empty %}

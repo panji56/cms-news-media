@@ -69,7 +69,7 @@ class Plugin extends PluginBase
         return [
             'dimsog.settings.access_posts' => [
                 'tab'   => 'dimsog.blog::lang.settings.name',
-                'label' => 'dimsog.blog::lang.settings.tabs.general',
+                'label' => 'dimsog.blog::lang.settings.name',
                 'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
             ]
         ];

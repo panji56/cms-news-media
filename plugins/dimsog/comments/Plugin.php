@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dimsog\Comments;
 
 use Backend;
+use Backend\Models\UserRole;
 use Dimsog\Comments\Classes\UnreadCommentsCalculator;
 use Dimsog\Comments\Components\Comments;
 use Dimsog\Comments\Models\Settings;
@@ -22,6 +23,17 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerPermissions()
+    {
+        return [
+            'dimsog.plugin.name' => [
+                'tab'   => 'dimsog.comments::lang.plugin.name',
+                'label' => 'dimsog.comments::lang.plugin.name',
+                'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
+            ]
+        ];
+    }
+
     public function registerNavigation(): array
     {
         return [
@@ -29,7 +41,7 @@ class Plugin extends PluginBase
                 'label'       => 'dimsog.comments::lang.plugin.name',
                 'url'         => Backend::url('dimsog/comments/comments'),
                 'icon'        => 'icon-comments',
-                'permissions' => ['*'],
+                'permissions' => ['dimsog.plugin.name'],
                 'order'       => 500,
                 'counter'     => [UnreadCommentsCalculator::class, 'calculate'],
                 'sideMenu' => [
