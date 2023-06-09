@@ -10,10 +10,14 @@ class TagsSeeder extends Seeder
 {
     public function run()
     {
-        for ($i = 1; $i <= 10; $i++) {
-            $tag = new Tag();
-            $tag->name = 'Tag ' . $i;
+        $tag = new Tag();
+            $tag->name = 'Breaking';
             $tag->save();
-        }
+        $tag = new Tag();
+            $tag->name = 'Trending';
+            $tag->save();
+        $tag = new Tag();
+            $tag->name = 'Featured';
+            $tag->save();
     }
 }

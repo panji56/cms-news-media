@@ -3,10 +3,22 @@
 <!-- <div class="nav-item dropdown"> -->
 <!--    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a> -->
 <!--    <div class="categories dropdown-menu rounded-0 m-0"> -->
-        {% for category in items %}
-            <a href="{{ 'category' | page({ slug: category.slug }) }}" class="nav-item nav-link {% if activeCategory.id == category.id %} category-item--active {% endif %}">
+        {# {% for category in items %}
+            <!-- <a href="{{ 'category' | page({ slug: category.slug }) }}" class="nav-item nav-link {% if activeCategory.id == category.id %} category-item--active {% endif %}">
                 {{ category.name }}
-            </a>
-        {% endfor %}
+            </a> -->
+        {% endfor %} #}
+        <a href="{{ 'category' | page({slug: 'news'}) }}" class="nav-item nav-link">
+                NEWS
+        </a>
+        <a href="{{ 'category' | page({slug: 'sport'}) }}" class="nav-item nav-link">
+                SPORT
+        </a>
+        <a href="{{ 'category' | page({slug: 'general-information'}) }}" class="nav-item nav-link">
+                GENERAL INFORMATION
+        </a>
+        <a href="{{ 'category' | page({slug: 'abk-interpretation'}) }}" class="nav-item nav-link">
+                ABK interpretation
+        </a>
 <!--    </div> 
 </div> -->
