@@ -32,6 +32,9 @@ secondaryTabs:
         active:
             type: switch
             default: true
+        creator:
+            label: 'Creator'
+            type: text
         image:
             label: dimsog.blog::lang.models.post.fields.image
             mode: image

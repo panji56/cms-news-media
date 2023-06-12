@@ -8,6 +8,8 @@ use Cms\Classes\ComponentBase;
 use Dimsog\Blog\Models\Post;
 use Dimsog\Comments\Models\Comment;
 use Illuminate\Support\Facades\Log;
+use Backend\Facades\BackendAuth;
+
 
 class PostView extends ComponentBase
 {
@@ -29,6 +31,18 @@ class PostView extends ComponentBase
             return $this->countActiveCommentsFromCurrentPage();
         }
         return $this->countActiveCommentsByUrl($url);
+    }
+
+    public function getPictureUser(?string $logon)
+    {
+        $user = BackendAuth::findUserByLogin($logon);
+        return $user->getAvatarThumb();
+    }
+
+    public function getFirstAndLastName(?string $logon)
+    {
+        $user = BackendAuth::findUserByLogin($logon);
+        return $user->first_name.' '.$user->last_name;
     }
 
     public function onRun()

@@ -6,14 +6,12 @@
 
             <div class="col-lg-7 px-0">
 
+                <div class="owl-carousel main-carousel position-relative">
+            
             {% for post in items %}
 
             {% if loop.index <= 3 %}
-
-                <div class="owl-carousel main-carousel position-relative">
-                        
-                        <div class="position-relative overflow-hidden" style="height: 500px;">
-                        
+                    <div class="position-relative overflow-hidden" style="height: 500px;">
                         <img class="img-fluid h-100" src="{{ post.image.getThumb(800, 500) }}" style="object-fit: cover;" alt="{{ post.image.name }}">
                         
                         <div class="overlay">
@@ -29,12 +27,11 @@
                             <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="{{ 'single' | page({ slug: post.slug }) }}">{{ post.name }}</a>
 
                         </div>
-                        
-                        </div>
-                    
-                </div>
+                    </div>
 
             {% else %}
+                    
+                </div>
 
             </div>
 

@@ -30,3 +30,6 @@
     - 'New: add the default post'
 1.0.8:
     - 'Minor code improvements'
+1.0.9:
+    - 'Add creator to table post'
+    - add_creators_to_posts.php

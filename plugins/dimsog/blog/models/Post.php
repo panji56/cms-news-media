@@ -7,6 +7,7 @@ namespace Dimsog\Blog\Models;
 use System\Models\File;
 use Winter\Storm\Database\Model;
 use Winter\Storm\Database\Traits\Validation;
+use Backend\Facades\BackendAuth;
 
 /**
  * Post Model
@@ -133,5 +134,24 @@ class Post extends Model
                 $fields->tags->hidden = true;
                 break;
         }
+
+        if( $fields->creator->value == NULL){
+
+            // $fields->creator->placeholder = BackendAuth::getUser()->login;
+            // $fields->creator->default = BackendAuth::getUser()->login;
+            $fields->creator->readOnly = true;
+
+        }else{
+
+            $fields->creator->disabled = true;
+
+        }
+
     }
+
+    public function beforeCreate()
+    {
+        $this->creator = BackendAuth::getUser()->login;
+    }
+
 }

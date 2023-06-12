@@ -15,6 +15,9 @@ columns:
     name:
         label: dimsog.blog::lang.models.post.columns.name
         searchable: true
+    creator:
+        label: 'Creator'
+        type: text
     active:
         type: partial
         path: ~/plugins/dimsog/blog/models/post/partials/_active.htm

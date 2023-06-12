@@ -11,6 +11,7 @@ use Dimsog\Blog\Models\Tag;
 use Dimsog\Blog\Models\PostTag;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Winter\Storm\Database\Collection;
+use Backend\Facades\BackendAuth;
 
 class PostsList extends ComponentBase
 {
@@ -57,6 +58,18 @@ class PostsList extends ComponentBase
         $this->page['counts'] = $this->posts->count();
         $this->page['limit'] = intval($this->property('limit'));
         //$this->page['tgs'] =  $this->pg;
+    }
+
+    public function getPictureUser(?string $logon)
+    {
+        $user = BackendAuth::findUserByLogin($logon);
+        return $user->getAvatarThumb();
+    }
+
+    public function getFirstAndLastName(?string $logon)
+    {
+        $user = BackendAuth::findUserByLogin($logon);
+        return $user->first_name.' '.$user->last_name;
     }
 
     public function defineProperties(): array

@@ -2,6 +2,7 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
+use Backend\Facades\BackendAuth;
 
 /**
  * Posts Back-end Controller
@@ -43,4 +44,5 @@ class Posts extends Controller
         parent::create();
         BackendMenu::setContext('Dimsog.Blog', 'blog', 'new_post');
     }
+
 }
