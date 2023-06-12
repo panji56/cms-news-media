@@ -149,9 +149,15 @@ class Post extends Model
 
     }
 
-    public function beforeCreate()
-    {
+    public function beforeCreate(){
         $this->creator = BackendAuth::getUser()->login;
+    }
+
+    public function beforeUpdate()
+    {
+        if($this->creator == NULL){
+            $this->creator = BackendAuth::getUser()->login;
+        }
     }
 
 }
