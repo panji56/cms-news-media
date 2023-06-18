@@ -16,7 +16,7 @@ class NewsFrontList extends ComponentBase
 
     public function onRun()
     {
-        $this->posts = NewsFront::all();
+        $this->posts = NewsFront::orderBy('id','asc')->get();
     }
 
     public function onRender()
