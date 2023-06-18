@@ -58,3 +58,7 @@ secondaryTabs:
             type: partial
             path: $/dimsog/blog/controllers/posts/_tags_relation.htm
             dependsOn: type
+        newsfront:
+            label: 'News Front'
+            type: partial
+            path: $/dimsog/blog/controllers/posts/_newsfront_relation.htm

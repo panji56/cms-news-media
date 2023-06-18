@@ -67,10 +67,12 @@ class Post extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [];
+    public $hasOne = [
+        'newsfront' => [NewsFront::class]
+    ];
     public $hasMany = [
         'tags' => [PostTag::class],
-        'blocks' => [PostBlock::class],
+        'blocks' => [PostBlock::class]
     ];
     public $hasOneThrough = [];
     public $hasManyThrough = [];

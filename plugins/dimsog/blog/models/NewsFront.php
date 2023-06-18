@@ -6,18 +6,19 @@ namespace Dimsog\Blog\Models;
 
 use Winter\Storm\Database\Model;
 use Winter\Storm\Database\Traits\Validation;
+use Illuminate\Support\Facades\Log;
 
 /**
- * PostTag Model
+ * Tag Model
  */
-class PostTag extends Model
+class NewsFront extends Model
 {
     use Validation;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'dimsog_blog_post_tags';
+    public $table = 'NewsFront_tags';
 
     /**
      * @var array Guarded fields
@@ -59,10 +60,7 @@ class PostTag extends Model
     /**
      * @var array Attributes to be cast to Argon (Carbon) instances
      */
-    protected $dates = [
-        'created_at',
-        'updated_at'
-    ];
+    protected $dates = [];
 
     /**
      * @var array Relations
@@ -72,7 +70,7 @@ class PostTag extends Model
     public $hasOneThrough = [];
     public $hasManyThrough = [];
     public $belongsTo = [
-        'tag' => [Tag::class]
+        'post' => [Post::class,'default' => true]
     ];
     public $belongsToMany = [];
     public $morphTo = [];
@@ -81,9 +79,24 @@ class PostTag extends Model
     public $attachOne = [];
     public $attachMany = [];
 
-
-    public function getTagIdOptions(): array
+    public function getIdOptions()
     {
-        return Tag::lists('name','id');
+        return [
+            '1' => 1,
+            '2' => 2,
+            '3' => 3,
+            '4' => 4,
+            '5' => 5,
+            '6' => 6,
+            '7' => 7,
+            '8' => 8
+        ];
     }
+
+    function beforeCreate(){
+        if( $this->find($this->id) != NULL ){
+            $this->find($this->id)->delete();
+        }
+    }
+
 }

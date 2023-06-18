@@ -33,3 +33,7 @@
 1.0.9:
     - 'Add creator to table post'
     - add_creators_to_posts.php
+1.0.9.1:
+    - 'Add newsfront table'
+    - create_news_front.php
+    - NewsFrontSeeder.php

@@ -11,6 +11,7 @@ use Dimsog\Blog\Components\CategoriesList;
 use Dimsog\Blog\Components\PostsList;
 use Dimsog\Blog\Components\PostView;
 use Dimsog\Blog\Components\TagView;
+use Dimsog\Blog\Components\NewsFrontList;
 use Dimsog\Blog\Models\Settings;
 use System\Classes\PluginBase;
 
@@ -60,7 +61,8 @@ class Plugin extends PluginBase
             CategoriesList::class => 'categoriesList',
             PostsList::class => 'postsList',
             PostView::class => 'postView',
-            TagView::class => 'tagView'
+            TagView::class => 'tagView',
+            NewsFrontList::class => 'newsFrontList'
         ];
     }
 

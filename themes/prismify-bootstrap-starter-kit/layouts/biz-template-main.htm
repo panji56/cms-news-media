@@ -10,11 +10,6 @@ limit = 4
 page = 1
 tag = "trending"
 
-[postsList TrendingSlider]
-limit = 7
-page = 1
-tag = "trending"
-
 [postsList LatestNews]
 limit = 4
 page = 1
@@ -53,6 +48,8 @@ page = 1
 tree = 0
 email = 1
 dateformat = "d.m.Y H:i"
+
+[newsFrontList]
 ==
 {% partial "biz/header.htm" %}
 
@@ -62,7 +59,7 @@ dateformat = "d.m.Y H:i"
     
     {% partial "biz/navbar.htm" %}
     
-    {% component 'TrendingSlider' %}
+    {% component 'newsFrontList' %}
 
     {% component 'breakingNews' %}
     
