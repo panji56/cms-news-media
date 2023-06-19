@@ -1,8 +1,5 @@
 
 fields:
-  active:
-    label: 'Active'
-    type: switch
   id:
     label: 'Order'
     type: dropdown
