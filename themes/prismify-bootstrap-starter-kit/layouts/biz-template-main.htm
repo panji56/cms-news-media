@@ -49,6 +49,9 @@ tree = 0
 email = 1
 dateformat = "d.m.Y H:i"
 
+[tagView tagsName]
+SiteType = "news"
+
 [newsFrontList]
 ==
 {% partial "biz/header.htm" %}
@@ -103,7 +106,7 @@ dateformat = "d.m.Y H:i"
                     
                     {% partial "biz/newsletter.htm" %}
 
-                    {% partial "biz/tags.htm" %}
+                    {% component 'tagsName' %}
 
                 </div>
             </div>

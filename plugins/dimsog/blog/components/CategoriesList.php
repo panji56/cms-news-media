@@ -21,10 +21,23 @@ class CategoriesList extends ComponentBase
         ];
     }
 
+    public function defineProperties(): array
+    {
+        return [
+            'SiteType' => [
+                'title' => 'Site Type',
+                'description' => '',
+                'default' => 'news',
+                'type' => 'string'
+            ]
+        ];
+    }
+
     public function onRun(): void
     {
         $this->categories = Category::where('active', 1)
             ->where('hidden', 0)
+            ->where('site_type',$this->property('SiteType'))
             ->orderBy('position')
             ->get();
     }

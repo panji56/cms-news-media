@@ -1,0 +1,10 @@
+title = "Demonstration"
+url = "/www-blog/tag/:slug"
+layout = "default-blog"
+is_hidden = 0
+meta_nofollow = 0
+
+[tagView]
+slug = "{{ :slug }}"
+==
+{% component 'tagView' %}

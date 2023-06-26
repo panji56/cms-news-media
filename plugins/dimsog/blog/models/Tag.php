@@ -92,4 +92,13 @@ class Tag extends Model
         }
         return static::where('slug', $slug)->first();
     }
+
+    public function getSiteTypeOptions(): array
+    {
+        return [
+            'news' => 'News',
+            'blog' => 'Blog'
+        ];
+    }
+
 }

@@ -4,18 +4,16 @@ page = 1
 tag = "trending"
 SiteType = "news"
 
-[postsList postNews]
-categorySlug = "{{ :slug }}"
-limit = 6
-page = "{{ :page }}"
-SiteType = "news"
-
 [comments]
 tree = 1
 email = 1
 dateformat = "d.m.Y H:i"
 
 [tagView tagsName]
+SiteType = "news"
+
+[tagView tagNews]
+slug = "{{ :slug }}"
 SiteType = "news"
 ==
 {% partial "biz/header.htm" %}
@@ -32,7 +30,18 @@ SiteType = "news"
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                     {% component 'postNews' %}
+                    <div class="row">
+                        {% component 'tagNews' %}
+
+                        <div class="col-lg-12 mb-3">
+                            <a href=""><img class="img-fluid w-100" src="img/ads-728x90.png" alt=""></a>
+                        </div>
+
+                        <div class="col-lg-12 mb-3">
+                            <a href=""><img class="img-fluid w-100" src="img/ads-728x90.png" alt=""></a>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="col-lg-4">
@@ -45,8 +54,8 @@ SiteType = "news"
                     
                     {% partial "biz/newsletter.htm" %}
 
-                    {##}
                     {% component 'tagsName' %}
+
                 </div>
 
             </div>

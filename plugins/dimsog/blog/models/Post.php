@@ -91,7 +91,11 @@ class Post extends Model
 
     public function getCategoryIdOptions(): array
     {
-        return Category::lists('name', 'id');
+        if($this->site_type == 'blog'){
+            return Category::where('site_type','blog')->lists('name', 'id');
+        }else{
+            return Category::where('site_type','news')->lists('name', 'id');
+        }
     }
 
     public function updateViews(): void
@@ -120,6 +124,14 @@ class Post extends Model
         ];
     }
 
+    public function getSiteTypeOptions(): array
+    {
+        return [
+            'news' => 'News',
+            'blog' => 'Blog'
+        ];
+    }
+
     public function filterFields($fields)
     {
         switch ($fields->type->value) {
@@ -134,6 +146,14 @@ class Post extends Model
                 $fields->blocks->hidden = true;
                 $fields->image->hidden = true;
                 $fields->tags->hidden = true;
+                break;
+        }
+        switch ($fields->site_type->value){
+            case 'blog':
+                $fields->newsfront->hidden = true;
+                break;
+            case 'news':
+                $fields->newsfront->hidden = false;
                 break;
         }
 

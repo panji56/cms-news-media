@@ -8,32 +8,41 @@ use Cms\Classes\ComponentBase;
 use Dimsog\Blog\Classes\PostsReader;
 use Dimsog\Blog\Models\Tag;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class TagView extends ComponentBase
 {
-    private Tag $tag;
+    private ?Tag $tag;
 
     private LengthAwarePaginator $posts;
 
+    private Collection $tags;
 
     public function onRun()
     {
         $tag = Tag::findBySlug($this->property('slug'));
         if (empty($tag)) {
-            return $this->controller->run('404');
-        }
-        $reader = (new PostsReader())
+            $this->tags = Tag::all();
+            $this->tag = $tag;
+            //return $this->controller->run('404');
+        }else{
+            $reader = (new PostsReader())
             ->setTagId($tag->id);
-
-        $this->tag = $tag;
-        $this->posts = $reader->read();
-        $this->page->title = $tag->name;
+            $reader->setSiteType($this->property('SiteType'));
+            $this->tag = $tag;
+            $this->posts = $reader->read();
+            $this->page->title = $tag->name;
+        }
     }
 
     public function onRender()
     {
-        $this->page['tag'] = $this->tag;
-        $this->page['items'] = $this->posts;
+        if(empty($this->tag)){
+            $this->page['tags'] = $this->tags;
+        }else{
+            $this->page['tag'] = $this->tag;
+            $this->page['items'] = $this->posts;
+        }
     }
 
     public function componentDetails(): array
@@ -53,6 +62,12 @@ class TagView extends ComponentBase
                 'default' => null,
                 'type' => 'string'
             ],
+            'SiteType' => [
+                'title' => 'Site Type',
+                'description' => '',
+                'default' => 'news',
+                'type' => 'string'
+            ]
         ];
     }
 }

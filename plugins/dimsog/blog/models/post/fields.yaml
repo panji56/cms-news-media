@@ -43,11 +43,17 @@ secondaryTabs:
             thumbOptions:
                 mode: crop
                 extension: auto
+        site_type:
+            label: 'Site Type'
+            required: 1
+            showSearch: true
+            type: dropdown
         category_id:
             label: dimsog.blog::lang.models.post.fields.category
             showSearch: true
             required: 1
             type: dropdown
+            dependsOn: site_type
         type:
             label: dimsog.blog::lang.models.post.fields.type
             showSearch: true
@@ -62,3 +68,4 @@ secondaryTabs:
             label: 'News Front'
             type: partial
             path: $/dimsog/blog/controllers/posts/_newsfront_relation.htm
+            dependsOn: site_type

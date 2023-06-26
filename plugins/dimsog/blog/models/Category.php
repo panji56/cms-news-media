@@ -95,4 +95,13 @@ class Category extends Model
             ->where('active', 1)
             ->first();
     }
+
+    public function getSiteTypeOptions(): array
+    {
+        return [
+            'news' => 'News',
+            'blog' => 'Blog'
+        ];
+    }
+    
 }

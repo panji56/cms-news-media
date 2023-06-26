@@ -37,3 +37,7 @@
     - 'Add newsfront table'
     - create_news_front.php
     - NewsFrontSeeder.php
+1.0.9.2:
+    - 'Add seperate site for blogs with same domain/host'
+    - add_sitetype_to_posts.php
+    - add_sitetype_to_categories.php

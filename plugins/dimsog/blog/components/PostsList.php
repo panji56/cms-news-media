@@ -44,6 +44,7 @@ class PostsList extends ComponentBase
         }
         $reader->setCategoryId((int) $this->category?->id);
         $reader->setTagId((int) $this->tag_id?->id);
+        $reader->setSiteType($this->property('SiteType'));
         $this->posts = $reader->read();
         if (empty($this->category) == false) {
             $this->page->title = $this->category->name;
@@ -93,6 +94,12 @@ class PostsList extends ComponentBase
                 'tittle' => 'tag',
                 'description' => '',
                 'default' => null,
+                'type' => 'string'
+            ],
+            'SiteType' => [
+                'title' => 'Site Type',
+                'description' => '',
+                'default' => 'news',
                 'type' => 'string'
             ]
         ];

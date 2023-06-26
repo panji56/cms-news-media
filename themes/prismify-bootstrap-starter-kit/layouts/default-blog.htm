@@ -1,0 +1,102 @@
+description = "Default layout"
+
+[categoriesList]
+SiteType = "blog"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            {% if this.page.id == 'home' %}
+                {{ this.page.blog_meta_title }}
+            {% else %}
+                {% if this.page.meta_title is not empty %}
+                    {{ this.page.meta_title }}
+                {% else %}
+                    {{ this.page.title }}
+                {% endif %}
+            {% endif %}
+        </title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+        <link href="{{ 'assets/frontend/dist/app.css' | theme }}" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        {% styles %}
+
+        {{ this.page.blog_header_seo_block | raw }}
+
+        <style>
+            .header .header__wrapper .header__logo .header-logo-link {
+                color: {{ this.page.blog_name_color }};
+            }
+
+            .header .header__wrapper .header__description {
+                color: {{ this.page.blog_description_color }};
+            }
+
+            .header .header__wrapper .categories .category-item {
+                color: {{ this.page.blog_menu_color }};
+            }
+
+            .header .header__wrapper .categories .category-item:hover {
+            color: {{ this.page.blog_menu_color_hover }};
+            }
+
+            .header .header__wrapper .categories .category-item--active {
+                color: {{ this.page.blog_menu_color_active }};
+            }
+        </style>
+
+        {% placeholder header %}
+    </head>
+    <body>
+        <header class="header"
+                {% if this.page.blog_poster is empty %}
+                style="background-image: url({{ 'assets/images/header-image.jpg' | theme }})"
+                {% else %}
+                style="background-image: url({{ this.page.blog_poster.path }})"
+                {% endif %}
+        >
+            <div class="header__wrapper">
+                <div class="header__logo">
+                    <a href="/www-blog" class="header-logo-link">
+                        {{ this.page.blog_name }}
+                    </a>
+                </div>
+                {% if this.page.blog_description is not empty %}
+                <div class="header__description">
+                    {{ this.page.blog_description }}
+                </div>
+                {% endif %}
+                <div class="header__categories">
+                    {% component 'categoriesList' %}
+                </div>
+            </div>
+        </header>
+
+        <section class="container g-0 pt-4">
+            <div class="row g-0">
+                <div class="col-lg-12 site-content">
+                    {% page %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Scripts -->
+        <script src="{{ 'assets/frontend/dist/app.js' | theme }}"></script>
+
+        {% framework extras %}
+        {% scripts %}
+
+        {{ this.page.footer_seo_block | raw }}
+
+        {% placeholder footer %}
+    </body>
+</html>

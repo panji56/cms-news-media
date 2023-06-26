@@ -24,6 +24,8 @@ class PostsReader
 
     private int $count = 0;
 
+    private String $site_type;
+
     public function __construct(int $limit = 20,int $page = 1)
     {
         $this->limit = $limit;
@@ -42,6 +44,12 @@ class PostsReader
         return $this;
     }
 
+    public function setSiteType(String $site_type): self
+    {
+        $this->site_type = $site_type;
+        return $this;
+    }
+
     public function read(): LengthAwarePaginator
     {
         $query = Post::where('active', 1);
@@ -54,6 +62,7 @@ class PostsReader
             $this->pg = PostTag::where('tag_id','=',$this->tagId)->lists('post_id');
             $query->whereIn('id', $this->pg);
         }
+        $query->where('site_type', $this->site_type);
         $query->orderByDesc('dimsog_blog_posts.created_at');
         return $query->paginate($this->limit,$this->page);
     }

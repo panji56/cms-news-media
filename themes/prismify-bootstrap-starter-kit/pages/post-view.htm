@@ -1,0 +1,18 @@
+title = "Demonstration"
+url = "/www-blog/post/:slug"
+layout = "default-blog"
+is_hidden = 0
+meta_nofollow = 0
+
+[postView]
+slug = "{{ :slug }}"
+
+[comments]
+tree = 1
+url = "{{ :slug }}"
+email = 1
+dateformat = "d.m.Y H:i"
+==
+{% component 'postView' %}
+
+{% component 'comments' %}

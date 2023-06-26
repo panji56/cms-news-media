@@ -5,17 +5,24 @@ slug = "{{ :slug }}"
 limit = 5
 page = 1
 tag = "trending"
+SiteType = "news"
 
 [postsList TrendingText]
 limit = 5
 page = 1
 tag = "trending"
+SiteType = "news"
 
 [comments commentNews]
 tree = 0
 url = "{{ :slug }}"
 email = 1
 dateformat = "d.m.Y H:i"
+
+[tagView tagsName]
+SiteType = "news"
+
+[seoTags]
 ==
 {% partial "biz/header.htm" %}
 
@@ -37,6 +44,8 @@ dateformat = "d.m.Y H:i"
                     {% component 'newsarticle' %}
 
                     {% component 'commentNews' %}
+                    
+                    {% component 'seoTags' %}
 
                     {# {% partial "biz/comment.htm" %}
 
@@ -53,7 +62,7 @@ dateformat = "d.m.Y H:i"
 
                     {% partial "biz/newsletter.htm" %}
 
-                    {% partial "biz/tags.htm" %}
+                    {% component 'tagsName' %}
 
                 </div>
             </div>

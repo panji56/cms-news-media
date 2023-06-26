@@ -44,9 +44,9 @@
                  {% if post.tags is not empty %}
                         <section class="post-tags">
                             {% for postTag in post.tags %}
-                                <a href="{{ 'tag-view' | page({ slug: postTag.tag.slug }) }}" class="post-tag-item">
+                                <a href="{{ 'news-tags' | page({ slug: postTag.tag.slug }) }}" class="post-tag-item btn btn-sm btn-outline-secondary">
                                     {{ postTag.tag.name }}
-                                </a>,
+                                </a>
                             {% endfor %}
                         </section>
                     {% endif %}

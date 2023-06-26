@@ -12,3 +12,6 @@ fields:
             field: name
             type: slug
         required: true
+    site_type:
+        label: 'Site Type'
+        type: dropdown

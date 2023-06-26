@@ -1,12 +1,14 @@
 title = "category"
-url = "/category/:slug/:page?1"
+url = "/news_category/:slug/:page?1"
 layout = "biz-template-category"
 is_hidden = 0
 meta_nofollow = 0
 ==
+<?php
 function onStart()
 {
     $this['page'] = $this->param('page');
     $this['slug'] = $this->param('slug');
 }
+?>
 ==

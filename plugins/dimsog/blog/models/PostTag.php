@@ -6,6 +6,7 @@ namespace Dimsog\Blog\Models;
 
 use Winter\Storm\Database\Model;
 use Winter\Storm\Database\Traits\Validation;
+use Illuminate\Support\Facades\Log;
 
 /**
  * PostTag Model

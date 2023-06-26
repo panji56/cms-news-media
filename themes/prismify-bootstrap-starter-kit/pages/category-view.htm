@@ -1,0 +1,18 @@
+title = "Demonstration"
+url = "/www-blog/category/:slug"
+layout = "default-blog"
+is_hidden = 0
+meta_nofollow = 0
+
+[postsList]
+categorySlug = "{{ :slug }}"
+limit = 20
+page = 1
+SiteType = "blog"
+
+[comments]
+tree = 1
+email = 1
+dateformat = "d.m.Y H:i"
+==
+{% component 'postsList' %}

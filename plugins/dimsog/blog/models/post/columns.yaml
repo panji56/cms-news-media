@@ -18,6 +18,9 @@ columns:
     creator:
         label: 'Creator'
         type: text
+    site_type:
+        label: 'Site Type'
+        type: text
     active:
         type: partial
         path: ~/plugins/dimsog/blog/models/post/partials/_active.htm

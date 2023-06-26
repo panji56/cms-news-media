@@ -10,6 +10,9 @@ columns:
     name:
         label: dimsog.blog::lang.models.category.columns.name
         searchable: true
+    site_type:
+        label: 'Site Type'
+        type: text
     count:
         label: dimsog.blog::lang.models.category.columns.count
         relation: posts
