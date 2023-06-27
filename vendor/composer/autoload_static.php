@@ -114,6 +114,7 @@ class ComposerStaticInitdb8171a871fded2bc702613caa6f4d04
         ),
         'L' => 
         array (
+            'Litespeed\\LSCache\\' => 18,
             'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\' => 17,
             'League\\Csv\\' => 11,
@@ -370,6 +371,10 @@ class ComposerStaticInitdb8171a871fded2bc702613caa6f4d04
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Litespeed\\LSCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/litespeed/lscache-laravel/src',
         ),
         'League\\MimeTypeDetection\\' => 
         array (

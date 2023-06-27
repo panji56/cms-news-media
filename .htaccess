@@ -58,3 +58,6 @@
     RewriteRule ^ index.php [L]
 
 </IfModule>
+<IfModule LiteSpeed>
+   CacheLookup on
+</IfModule>

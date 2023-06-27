@@ -18,7 +18,7 @@ return [
     Illuminate\Session\SessionServiceProvider::class,
     Illuminate\View\ViewServiceProvider::class,
     Laravel\Tinker\TinkerServiceProvider::class,
-
+    Litespeed\LSCache\LSCacheServiceProvider::class,
     /*
      * Winter Storm providers
      */

@@ -56,6 +56,7 @@ return array(
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Litespeed\\LSCache\\' => array($vendorDir . '/litespeed/lscache-laravel/src'),
     'League\\MimeTypeDetection\\' => array($vendorDir . '/league/mime-type-detection/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'League\\Csv\\' => array($vendorDir . '/league/csv/src'),
