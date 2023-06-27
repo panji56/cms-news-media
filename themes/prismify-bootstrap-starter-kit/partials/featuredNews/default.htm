@@ -10,7 +10,7 @@
                 {% for post in items %}
                     <div class="position-relative overflow-hidden" style="height: 300px;">
                         
-                        <img class="img-fluid h-100" src="{{ post.image | resize(700, 435) }}" style="object-fit: cover;" alt="{{ post.image.name }}">
+                        <img class="img-fluid h-100" src="{{ post.image.getThumb(258, 300) }}" style="object-fit: cover;" alt="{{ post.image.name }}">
                         
                         <div class="overlay">
                         
