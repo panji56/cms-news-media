@@ -3,7 +3,8 @@
 namespace Litespeed\LSCache;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
+use Backend\Facades\BackendAuth;
 use Illuminate\Support\Str;
 
 class LSCacheMiddleware
@@ -33,7 +34,7 @@ class LSCacheMiddleware
             return $response;
         }
 
-        if ($guest_only && Auth::check()) {
+        if ($guest_only && BackendAuth::check()) {
             $response->headers->set('X-LiteSpeed-Cache-Control', 'no-cache');
 
             return $response;
