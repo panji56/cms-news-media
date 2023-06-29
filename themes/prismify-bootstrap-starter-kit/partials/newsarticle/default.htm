@@ -19,7 +19,7 @@
                 <i class="far fa-calendar-alt"></i> {{ post.created_at | date('d.m.Y') }}
                 {% if post.image is not empty %}
                     <section class="post-item__image">
-                        <img src="{{ post.image.getThumb(700, 400, { 'mode': 'crop' }) }}" class="img-fluid" alt="{{ post.image.name }}">
+                        <img src="{{ post.image | resize(700, 400, { 'mode': 'crop' }) }}" class="img-fluid" alt="{{ post.image.name }}">
                     </section>
                 {% endif %}
                     
@@ -31,7 +31,7 @@
                 {% endif %}
                 {% if block.type == 'image' %}
                     <div class="post-item-blocks__image">
-                        <img src="{{ block.image.getThumb(800, 500) }}" alt="{{ block.image.title }}" class="img-fluid">
+                        <img src="{{ block.image | resize(800, 500) }}" alt="{{ block.image.title }}" class="img-fluid">
                     </div>
                 {% endif %}
                 {% if block.type == 'code' %}

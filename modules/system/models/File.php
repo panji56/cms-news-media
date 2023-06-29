@@ -105,4 +105,57 @@ class File extends FileBase
     {
         return Storage::disk(Config::get('cms.storage.uploads.disk'));
     }
+
+    public function beforeCreate(){
+        if(($this->content_type == 'image/jpeg' )
+            or 
+            ($this->content_type == 'image/gif' )
+            or
+            ($this->content_type == 'image/png' )
+        ){
+            $path = $this->getLocalPath();
+            $info = getimagesize($path);
+            $isAlpha = false;
+            $outputPath = "";
+            $new_disk_name = "";
+            $new_file_name = "";
+            switch ($info['mime']) {
+                case 'image/jpeg':
+                    $image = imagecreatefromjpeg($path);
+                    $outputPath = str_replace(".jpg",".webp",$path);
+                    $new_disk_name = str_replace(".jpg",".webp",$this->disk_name);
+                    $new_file_name = str_replace(".jpg",".webp",$this->file_name);
+                    break;
+                case 'image/gif':
+                    $isAlpha = true;
+                    $image = imagecreatefromgif($path);
+                    $outputPath = str_replace(".gif",".webp",$path);
+                    $new_disk_name = str_replace(".gif",".webp",$this->disk_name);
+                    $new_file_name = str_replace(".gif",".webp",$this->file_name);
+                    break;
+                case 'image/png':
+                    $isAlpha = true;
+                    $image = imagecreatefrompng($path);
+                    $outputPath = str_replace(".png",".webp",$path);
+                    $new_disk_name = str_replace(".png",".webp",$this->disk_name);
+                    $new_file_name = str_replace(".png",".webp",$this->file_name);
+                    break;
+                }
+            if ($isAlpha) {
+                    imagepalettetotruecolor($image);
+                    imagealphablending($image, true);
+                    imagesavealpha($image, true);
+                }
+            imagewebp($image, $outputPath, 70);
+            unlink($path);
+            $this->disk_name=$new_disk_name;
+            $this->content_type='image/webp';
+            $this->file_name=$new_file_name;
+            clearstatcache();
+            $this->file_size= filesize($outputPath);
+        }
+        
+
+    }
+
 }

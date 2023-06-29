@@ -180,6 +180,7 @@ class Post extends Model
         if($this->creator == NULL){
             $this->creator = BackendAuth::getUser()->login;
         }
+        
     }
 
 }

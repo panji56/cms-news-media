@@ -150,4 +150,5 @@ class PostBlock extends Model
             'code' => 'Code'
         ];
     }
+
 }
