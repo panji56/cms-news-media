@@ -12,6 +12,10 @@ use Dimsog\Blog\Components\PostsList;
 use Dimsog\Blog\Components\PostView;
 use Dimsog\Blog\Components\TagView;
 use Dimsog\Blog\Components\NewsFrontList;
+use Dimsog\Blog\Components\CatView;
+use Dimsog\Blog\Components\BreakingNewsComponent;
+use Dimsog\Blog\Components\TrendingNewsComponent;
+use Dimsog\Blog\Components\FeaturedNewsComponent;
 use Dimsog\Blog\Models\Settings;
 use System\Classes\PluginBase;
 
@@ -62,7 +66,11 @@ class Plugin extends PluginBase
             PostsList::class => 'postsList',
             PostView::class => 'postView',
             TagView::class => 'tagView',
-            NewsFrontList::class => 'newsFrontList'
+            NewsFrontList::class => 'newsFrontList',
+            CatView::class => 'catView',
+            TrendingNewsComponent::class => 'trending_news',
+            FeaturedNewsComponent::class => 'featured_news',
+            BreakingNewsComponent::class => 'breaking_news'
         ];
     }
 
@@ -122,9 +130,44 @@ class Plugin extends PluginBase
                         'permissions' => ['dimsog.settings.access_posts'],
                         'order'       => 500
                     ],
+                    'add_to_fyp' => [
+                        'label'       => 'Add to FYP',
+                        'url'         => Backend::url('dimsog/blog/fyp'),
+                        'icon'        => 'icon-file-text-o',
+                        'permissions' => ['dimsog.settings.access_posts'],
+                        'order'       => 500
+                    ],
+                    'featured_news' => [
+                        'label'       => 'Add to Featured News',
+                        'url'         => Backend::url('dimsog/blog/featurednews'),
+                        'icon'        => 'icon-file-text-o',
+                        'permissions' => ['dimsog.settings.access_posts'],
+                        'order'       => 500
+                    ],
+                    'breaking_news' => [
+                        'label'       => 'Add to Breaking News',
+                        'url'         => Backend::url('dimsog/blog/breakingnews'),
+                        'icon'        => 'icon-file-text-o',
+                        'permissions' => ['dimsog.settings.access_posts'],
+                        'order'       => 500
+                    ],
+                    'trending_news' => [
+                        'label'       => 'Add to Trending News',
+                        'url'         => Backend::url('dimsog/blog/trendingnews'),
+                        'icon'        => 'icon-file-text-o',
+                        'permissions' => ['dimsog.settings.access_posts'],
+                        'order'       => 500
+                    ],
                     'categories' => [
                         'label'       => 'dimsog.blog::lang.plugin.navigation.categories',
                         'url'         => Backend::url('dimsog/blog/categories'),
+                        'icon'        => 'icon-list-ul',
+                        'permissions' => ['dimsog.settings.access_posts'],
+                        'order'       => 500
+                    ],
+                    'cat_news' => [
+                        'label'       => 'Add to Categorized News',
+                        'url'         => Backend::url('dimsog/blog/catnews'),
                         'icon'        => 'icon-list-ul',
                         'permissions' => ['dimsog.settings.access_posts'],
                         'order'       => 500

@@ -1,0 +1,9 @@
+
+fields:
+  name:
+    label: 'Post Name'
+    type: partial
+    path: $/dimsog/blog/controllers/catnews/_posts_relation.htm
+  category:
+    label: 'Category'
+    dependsOn: name

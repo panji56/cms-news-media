@@ -1,0 +1,7 @@
+
+fields:
+  name:
+    label: 'Post Name'
+    type: partial
+    path: $/dimsog/blog/controllers/breakingnews/_posts_relation.htm
+  

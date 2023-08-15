@@ -1,0 +1,28 @@
+<?php
+use Dimsog\Blog\Models\Category;
+use Dimsog\Blog\Models\CatNews;
+$cats = Category::select('name')->where('site_type','like','news')->orderBy('position', 'asc')->distinct()->get(); 
+?>
+<div class="control-list list-scrollable" data-control="listwidget">
+    <?php foreach ($cats->whereIn('name',CatNews::lists('category')) as $cat): ?>
+        <?php 
+            $records_cats = $records->where('category',$cat->name)->sortBy('order');
+        ?>
+        <table class="table data" data-control="rowlink">
+            <thead>
+                <?= $this->makePartial('list_head_row') ?>
+            </thead>
+            <tbody>
+                <?php if (count($records_cats )): ?>
+                    <?= $this->makePartial('list_body_rows',['records' => $records_cats]) ?>
+                <?php else: ?>
+                    <tr class="no-data">
+                        <td colspan="<?= $columnTotal ?>" class="nolink">
+                            <p class="no-data"><?= $noRecordsMessage ?></p>
+                        </td>
+                    </tr>
+                <?php endif ?>
+            </tbody>
+        </table>
+    <?php endforeach ?>
+</div>

@@ -1,0 +1,44 @@
+<div class="row">
+{% for cat in cats %}
+    <div class="col-lg-6">
+    <div class="section-title">
+        <h4 class="m-0 text-uppercase font-weight-bold">{{ cat.category }}</h4>
+    </div>
+    {% for post in items | filter(post => post.category == cat.category) | sort((a, b) => a.order <=> b.order) %}
+        {% if post.order == 1 %}
+        <div class="position-relative mb-3">
+            <img class="img-fluid w-100" src="{{ post.post.image | resize(364, 220) }}" style="object-fit: cover; height:220px; " alt="{{ post.post.image.name }}">
+            <div class="bg-white border border-top-0 p-4">
+                <div class="mb-2">
+                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="{{ 'category' | page({slug: post.post.category.slug}) }}">{{ post.post.category.name }}</a>
+                    <a class="text-body" href=""><small>{{ post.post.created_at | date('d.m.Y') }}</small></a>
+                </div>
+                    <a class="h4 d-block mb-0 text-secondary text-uppercase font-weight-bold" href="{{ 'single' | page({ slug: post.post.slug }) }}">{{ post.post.name }}</a>
+            </div>
+            <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
+                <!--<div class="d-flex align-items-center">
+                    <img class="rounded-circle mr-2" src="img/user.jpg" alt="" width="25" height="25">
+                        <small>John Doe</small>
+                </div>-->
+                <div class="d-flex align-items-center">
+                        <small class="ml-3"><i class="far fa-eye mr-2"></i>{{ post.post.views }}</small>
+                        <small class="ml-3"><i class="far fa-comment mr-2"></i>{{ comments.count(post.post.slug) }}</small>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+            <img class="img-fluid" src="{{ post.post.image | resize(110, 110) }}" alt="">
+                <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                <div class="mb-2">
+                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="{{ 'category' | page({slug: post.post.category.slug}) }}">{{ post.post.category.name }}</a>
+                    <a class="text-body" href=""><small>{{ post.post.created_at | date('d.m.Y') }}</small></a>
+                </div>
+                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{{ 'single' | page({ slug: post.post.slug }) }}">{{ post.post.name }}</a>
+                </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% endfor %}
+</div>

@@ -41,3 +41,19 @@
     - 'Add seperate site for blogs with same domain/host'
     - add_sitetype_to_posts.php
     - add_sitetype_to_categories.php
+1.0.10:
+    - 'Add publish / connect post to FYP, Breaking News, Category News, Featured News'
+    - create_cat_news.php
+1.0.10.1:
+    - 'Modify table CatNews_Table'
+    - add_order_to_catnews.php
+1.0.10.2:
+    - 'Add publish / connect post to FYP, Breaking News, Category News, Featured News Table'
+    - create_breaking.php
+    - create_featured_news.php
+    - create_trending.php
+1.0.10.3:
+    - 'Add publish / connect post to FYP, Breaking News, Category News, Featured News Table'
+    - FeaturedSeeder.php
+    - BreakingSeeder.php
+    - TrendingSeeder.php

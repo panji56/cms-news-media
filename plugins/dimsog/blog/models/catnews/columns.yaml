@@ -1,0 +1,19 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    category:
+        label: 'Category'
+        searchable: true
+        width: '250px'
+    order:
+        label: 'Order'
+        width: '100px'
+    name:
+        label: 'Post name'
+        searchable: true
+        relation: post
+        select: name
+    
+    

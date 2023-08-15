@@ -1,0 +1,50 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
+list: $/dimsog/blog/models/featurednews/columns.yaml
+
+# Model Class name
+modelClass: Dimsog\Blog\Models\FeaturedNews
+
+# List Title
+title: Featured News
+
+# Link URL for each record
+recordUrl: dimsog/blog/featurednews/update/:id
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 20
+
+# Options to provide the user when selecting how many records to display per page
+perPageOptions: [20, 40, 80, 100, 120]
+
+# Display page numbers with pagination, disable to improve performance
+showPageNumbers: true
+
+# Displays the list column set up button
+showSetup: false
+
+# Displays the sorting link on each column
+showSorting: false
+
+# Default sorting column
+defaultSort:
+    column: id
+    direction: asc
+
+# Display checkboxes next to each record
+# showCheckboxes: true
+
+# Toolbar widget configuration
+#toolbar:
+    # Partial for toolbar buttons
+    #buttons: list_toolbar
+
+    # Search widget configuration
+    #search:
+        #prompt: backend::lang.list.search_prompt

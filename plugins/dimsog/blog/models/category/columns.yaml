@@ -17,3 +17,12 @@ columns:
         label: dimsog.blog::lang.models.category.columns.count
         relation: posts
         useRelationCount: true
+    active:
+        label: 'Active'
+        type: switch
+    hidden:
+        label: 'Hidden ?'
+        type: switch
+    position:
+        label: 'Position ? '
+        type: number

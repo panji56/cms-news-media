@@ -70,7 +70,8 @@ class NewsFront extends Model
     public $hasOneThrough = [];
     public $hasManyThrough = [];
     public $belongsTo = [
-        'post' => [Post::class,'default' => true]
+        'post' => [Post::class,'default' => true],
+        'relationpost' => [RelationPost::class,'default' => true,'key' => 'post_id']
     ];
     public $belongsToMany = [];
     public $morphTo = [];

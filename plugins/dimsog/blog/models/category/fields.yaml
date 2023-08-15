@@ -12,6 +12,15 @@ fields:
             field: name
             type: slug
         required: true
+    active:
+        label: 'Active ?'
+        type: switch
     site_type:
         label: 'Site Type'
         type: dropdown
+    hidden:
+        label: 'Hidden ?'
+        type: switch
+    position:
+        label: 'Position ? '
+        type: number

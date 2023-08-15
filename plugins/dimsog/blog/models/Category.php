@@ -104,4 +104,44 @@ class Category extends Model
         ];
     }
     
+    public function beforeCreate(){
+        if($this->site_type == 'news'){
+            for($idx = 1;$idx <= 3; $idx++){
+                $id_cat=rand(1,100000);
+                $catnews = new CatNews;
+                $catnews->id=($this->slug.$id_cat);
+                $catnews->category=$this->name;
+                $catnews->order=$idx;
+                $catnews->cat_order=$this->position;
+                $catnews->save();
+            }
+        }
+    }
+
+    public function beforeUpdate(){
+        $cats = CatNews::where('category', $this->name)->first();
+        if(!$cats){
+            if($this->site_type == 'news'){
+                for($idx = 1;$idx <= 3; $idx++){
+                    $id_cat=rand(1,100000);
+                    $catnews = new CatNews;
+                    $catnews->id=($this->slug.$id_cat);
+                    $catnews->category=$this->name;
+                    $catnews->order=$idx;
+                    $catnews->cat_order=$this->position;
+                    $catnews->save();
+                }
+            }
+        }else{
+            CatNews::where('category', $this->name)->update(['cat_order' => $this->position]);
+        }
+    }
+
+    public function beforeDelete(){
+        $cats = CatNews::where('category', $this->name)->first();
+        if($cats){
+            CatNews::where('category', $this->name)->delete();
+        }
+    }
+
 }

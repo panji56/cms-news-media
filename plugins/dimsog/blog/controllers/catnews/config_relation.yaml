@@ -1,0 +1,10 @@
+relationpost:
+  label: 'post'
+  manage: 
+    list: $/dimsog/blog/models/relationpost/columns.yaml
+    showSearch: true
+    scope: Cat
+    form: $/dimsog/blog/models/relationpost/fields.yaml
+  view: 
+    form: $/dimsog/blog/models/relationpost/fields.yaml
+    toolbarButtons: link

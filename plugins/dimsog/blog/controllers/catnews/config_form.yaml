@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: NewsFront
+
+# Model Form Field configuration
+form: $/dimsog/blog/models/catnews/fields.yaml
+
+# Model Class name
+modelClass: Dimsog\Blog\Models\CatNews
+
+# Default redirect location
+defaultRedirect: dimsog/blog/catnews
+
+# Create page
+create:
+    title: dimsog.blog::lang.controllers.common.create
+    redirect: dimsog/blog/catnews/update/:id
+    redirectClose: dimsog/blog/catnews
+
+# Update page
+# update:
+#     title: dimsog.blog::lang.controllers.common.update
+#     redirect: dimsog/blog/catnews
+#     redirectClose: dimsog/blog/catnews
+
+# Preview page
+# preview:
+#     title: backend::lang.form.preview_title

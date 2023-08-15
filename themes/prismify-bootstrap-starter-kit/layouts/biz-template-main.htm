@@ -1,48 +1,15 @@
 description = "news media template"
 
-[postsList TrendingNews]
-limit = 5
-page = 1
-tag = "trending"
-
 [postsList TrendingText]
 limit = 4
 page = 1
 tag = "trending"
+SiteType = "news"
 
 [postsList LatestNews]
 limit = 4
 page = 1
-
-[postsList breakingNews]
-limit = 5
-page = 1
-tag = "breaking"
-
-[postsList featuredNews]
-limit = 10
-page = 1
-tag = "featured"
-
-[postsList featuredCat]
-categorySlug = "news"
-limit = 3
-page = 1
-
-[postsList featuredCat1]
-categorySlug = "sport"
-limit = 3
-page = 1
-
-[postsList featuredCat2]
-categorySlug = "general-information"
-limit = 3
-page = 1
-
-[postsList featuredCat3]
-categorySlug = "abk-interpretation"
-limit = 3
-page = 1
+SiteType = "news"
 
 [comments]
 tree = 0
@@ -53,6 +20,14 @@ dateformat = "d.m.Y H:i"
 SiteType = "news"
 
 [newsFrontList]
+
+[catView]
+
+[breaking_news]
+
+[featured_news]
+
+[trending_news]
 ==
 {% partial "biz/header.htm" %}
 
@@ -64,9 +39,9 @@ SiteType = "news"
     
     {% component 'newsFrontList' %}
 
-    {% component 'breakingNews' %}
+    {% component 'breaking_news' %}
     
-    {% component 'featuredNews' %}
+    {% component 'featured_news' %}
 
     <div class="container-fluid">
         <div class="container">
@@ -78,31 +53,14 @@ SiteType = "news"
                             {% component 'LatestNews' %}
                         </div>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            {% component 'featuredCat' %}
-                        </div>
-                        <div class="col-lg-6">
-                            {% component 'featuredCat1' %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            {% component 'featuredCat2' %}
-                        </div>
-                        <div class="col-lg-6">
-                            {% component 'featuredCat3' %}
-                        </div>
-                    </div>
-                    
+                        {% component 'catView' %}
                 </div>
                 <div class="col-lg-4">
                     {% partial "biz/Social-Follow.htm" %}
                     
                     {% partial "biz/ads.htm" %}
 
-                    {% component 'TrendingNews' %}
+                    {% component 'trending_news' %}
                     
                     {% partial "biz/newsletter.htm" %}
 

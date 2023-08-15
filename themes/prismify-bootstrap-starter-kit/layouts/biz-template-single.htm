@@ -1,12 +1,6 @@
 [postView newsarticle]
 slug = "{{ :slug }}"
 
-[postsList TrendingNews]
-limit = 5
-page = 1
-tag = "trending"
-SiteType = "news"
-
 [postsList TrendingText]
 limit = 5
 page = 1
@@ -23,6 +17,8 @@ dateformat = "d.m.Y H:i"
 SiteType = "news"
 
 [seoTags]
+
+[trending_news]
 ==
 {% partial "biz/header.htm" %}
 
@@ -58,7 +54,7 @@ SiteType = "news"
 
                     {% partial "biz/ads.htm" %}
                     
-                    {% component 'TrendingNews' %}
+                    {% component 'trending_news' %}
 
                     {% partial "biz/newsletter.htm" %}
 

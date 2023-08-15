@@ -1,0 +1,8 @@
+columns:
+    name:
+        label: dimsog.blog::lang.models.post.columns.name
+        searchable: true
+    category:
+        label: dimsog.blog::lang.models.post.fields.category
+        relation: category
+        select: name        
