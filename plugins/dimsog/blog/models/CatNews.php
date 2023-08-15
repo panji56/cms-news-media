@@ -102,7 +102,6 @@ class CatNews extends Model
             // $url = last($url);
             $url = Str::afterlast($url,'/');
             $cat = CatNews::find($url);
-            Log::info($url);
             if(strcmp($cat->category,$post_cat->name) == 0){
                 return true;
             }else{
