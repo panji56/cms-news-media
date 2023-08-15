@@ -57,3 +57,6 @@
     - FeaturedSeeder.php
     - BreakingSeeder.php
     - TrendingSeeder.php
+1.0.10.4:
+    - 'Add category order to CatNews_Table'
+    - add_cat_order_to_catnews.php
