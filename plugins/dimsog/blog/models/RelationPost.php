@@ -99,35 +99,35 @@ class RelationPost extends Model
     public function scopeBreaking($query,$model){
         $nullcount = BreakingNews::select('post_id')->whereNotNull('post_id')->count();
             if($nullcount > 0){
-                return $query->whereNotIn('id',BreakingNews::select('post_id')->whereNotNull('post_id')->get());
+                return $query->whereNotIn('id',BreakingNews::select('post_id')->whereNotNull('post_id')->get())->where('site_type','like','news');
             }
     }
 
     public function scopeFeatured($query,$model){
         $nullcount = FeaturedNews::select('post_id')->whereNotNull('post_id')->count();
             if($nullcount > 0){
-                return $query->whereNotIn('id',FeaturedNews::select('post_id')->whereNotNull('post_id')->get());
+                return $query->whereNotIn('id',FeaturedNews::select('post_id')->whereNotNull('post_id')->get())->where('site_type','like','news');
             }
     }
 
     public function scopeFyp($query,$model){
         $nullcount = NewsFront::select('post_id')->whereNotNull('post_id')->count();
             if($nullcount > 0){
-                return $query->whereNotIn('id',NewsFront::select('post_id')->whereNotNull('post_id')->get());
+                return $query->whereNotIn('id',NewsFront::select('post_id')->whereNotNull('post_id')->get())->where('site_type','like','news');
             }
     }
 
     public function scopeTrending($query,$model){
         $nullcount = TrendingNews::select('post_id')->whereNotNull('post_id')->count();
             if($nullcount > 0){
-                return $query->whereNotIn('id',TrendingNews::select('post_id')->whereNotNull('post_id')->get());
+                return $query->whereNotIn('id',TrendingNews::select('post_id')->whereNotNull('post_id')->get())->where('site_type','like','news');
             }
     }
 
     public function scopeCat($query,$model){
         $nullcount = CatNews::select('post_id')->whereNotNull('post_id')->count();
             if($nullcount > 0){
-                return $query->whereNotIn('id',CatNews::select('post_id')->whereNotNull('post_id')->get());
+                return $query->whereNotIn('id',CatNews::select('post_id')->whereNotNull('post_id')->get())->where('site_type','like','news');
             }
     }
 
