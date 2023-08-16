@@ -148,14 +148,6 @@ class Post extends Model
                 $fields->tags->hidden = true;
                 break;
         }
-        switch ($fields->site_type->value){
-            case 'blog':
-                $fields->newsfront->hidden = true;
-                break;
-            case 'news':
-                $fields->newsfront->hidden = false;
-                break;
-        }
 
         if( $fields->creator->value == NULL){
 

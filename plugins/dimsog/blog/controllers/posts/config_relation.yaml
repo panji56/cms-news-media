@@ -23,13 +23,3 @@ blocks:
     toolbarButtons:
       create: dimsog.blog::lang.controllers.common.create
       delete: dimsog.blog::lang.controllers.common.delete
-newsfront:
-  label: 'News on Front'
-  manage: 
-    list: $/dimsog/blog/models/newsfront/columns.yaml
-    conditions: post_id IS NULL
-    form: $/dimsog/blog/models/newsfront/fields.yaml
-  view: 
-    form: $/dimsog/blog/models/newsfront/fields.yaml
-    toolbarButtons: link|unlink
-
