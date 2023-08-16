@@ -7,3 +7,4 @@ fields:
   category:
     label: 'Category'
     dependsOn: name
+    readOnly: true
