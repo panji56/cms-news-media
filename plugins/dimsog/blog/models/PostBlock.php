@@ -164,6 +164,7 @@ class PostBlock extends Model
                     $path = Str::afterLast($path,"/media/");
                     $path = media_path($path);
                     $path = Str::after($path,"\\");
+                    Log::info($path);
                     $info = getimagesize($path);
                     $isAlpha = false;
                     $outputPath = "";
@@ -191,7 +192,6 @@ class PostBlock extends Model
                     imagewebp($image, $outputPath, 70);
                     unlink($path);
                     $outputPath = Str::replace('\\','/','\\'.$outputPath);
-                    Log::info($outputPath);
                     clearstatcache();
                     $imgNode->setAttribute("src",$outputPath);
                 }
