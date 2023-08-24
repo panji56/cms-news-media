@@ -154,50 +154,60 @@ class PostBlock extends Model
     }
 
     function beforeSave(){
-        if($this->type == 'text'){
-            $doc = new \DOMDocument();
-            $doc->loadhtml($this->text);
-            $imgs = $doc->getElementsByTagName('img');
-            foreach($imgs as $imgNode){
-                $path = $imgNode->getAttribute("src");
-                if(!ends_with($path,".webp")){
-                    $path = Str::afterLast($path,"/media/");
-                    $path = media_path($path);
-                    $path = Str::after($path,"\\");
-                    Log::info($path);
-                    $info = getimagesize($path);
-                    $isAlpha = false;
-                    $outputPath = "";
-                    switch ($info['mime']) {
-                        case 'image/jpeg':
-                            $image = imagecreatefromjpeg($path);
-                            $outputPath = str_replace(".jpg",".webp",$path);
-                            break;
-                        case 'image/gif':
-                            $isAlpha = true;
-                            $image = imagecreatefromgif($path);
-                            $outputPath = str_replace(".gif",".webp",$path);
-                            break;
-                        case 'image/png':
-                            $isAlpha = true;
-                            $image = imagecreatefrompng($path);
-                            $outputPath = str_replace(".png",".webp",$path);
-                            break;
+        if(!empty($this->text)){
+            if($this->type == 'text'){
+                $doc = new \DOMDocument();
+                Log::info($this->text);
+                $doc->loadhtml($this->text);
+                $imgs = $doc->getElementsByTagName('img');
+                foreach($imgs as $imgNode){
+                    $path = $imgNode->getAttribute("src");
+                    if(!ends_with($path,".webp")){
+                        $path = Str::afterLast($path,"/media/");
+                        $path = media_path($path);
+                        if(Str::startsWith($path,"\\")){
+                            $path = Str::after($path,"\\");
+                        }else{
+                            $path = Str::after($path,"/");
+                        };
+                        Log::info($path);
+                        $info = getimagesize($path);
+                        $isAlpha = false;
+                        $outputPath = "";
+                        switch ($info['mime']) {
+                            case 'image/jpeg':
+                                $image = imagecreatefromjpeg($path);
+                                $outputPath = str_replace(".jpg",".webp",$path);
+                                break;
+                            case 'image/gif':
+                                $isAlpha = true;
+                                $image = imagecreatefromgif($path);
+                                $outputPath = str_replace(".gif",".webp",$path);
+                                break;
+                            case 'image/png':
+                                $isAlpha = true;
+                                $image = imagecreatefrompng($path);
+                                $outputPath = str_replace(".png",".webp",$path);
+                                break;
+                            }
+                        if ($isAlpha) {
+                                imagepalettetotruecolor($image);
+                                imagealphablending($image, true);
+                                imagesavealpha($image, true);
+                            }
+                        imagewebp($image, $outputPath, 70);
+                        unlink($path);
+                        if(Str::startsWith($outputPath,"storage\\")){
+                            $outputPath = Str::replace('\\','/','\\'.$outputPath);
                         }
-                    if ($isAlpha) {
-                            imagepalettetotruecolor($image);
-                            imagealphablending($image, true);
-                            imagesavealpha($image, true);
-                        }
-                    imagewebp($image, $outputPath, 70);
-                    unlink($path);
-                    $outputPath = Str::replace('\\','/','\\'.$outputPath);
-                    clearstatcache();
-                    $imgNode->setAttribute("src",$outputPath);
+                        Log::info($outputPath);
+                        clearstatcache();
+                        $imgNode->setAttribute("src",$outputPath);
+                    }
                 }
+                $doc = $doc->saveHTML();
+                $this->text = $doc;
             }
-            $doc = $doc->saveHTML();
-            $this->text = $doc;
         }
     }
 
