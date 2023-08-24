@@ -199,6 +199,8 @@ class PostBlock extends Model
                         unlink($path);
                         if(Str::startsWith($outputPath,"storage\\")){
                             $outputPath = Str::replace('\\','/','\\'.$outputPath);
+                        }else{
+                            $outputPath = '/'.$outputPath;
                         }
                         Log::info($outputPath);
                         clearstatcache();
