@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Dimsog\Blog\Models;
 
 use System\Models\File;
+use Illuminate\Support\Facades\Log;
 use Winter\Storm\Database\Model;
 use Winter\Storm\Database\Models\DeferredBinding as DeferredBindingModel;
 use Winter\Storm\Database\SortableScope;
 use Winter\Storm\Database\Traits\Sortable;
 use Winter\Storm\Database\Traits\Validation;
+use Illuminate\Support\Str;
 
 /**
  * PostBlock Model
@@ -150,5 +152,66 @@ class PostBlock extends Model
             'code' => 'Code'
         ];
     }
+
+    function beforeSave(){
+        if($this->type == 'text'){
+            $doc = new \DOMDocument();
+            $doc->loadhtml($this->text);
+            $imgs = $doc->getElementsByTagName('img');
+            foreach($imgs as $imgNode){
+                $path = $imgNode->getAttribute("src");
+                if(!ends_with($path,".webp")){
+                    $path = Str::afterLast($path,"/media/");
+                    $path = media_path($path);
+                    $path = Str::after($path,"\\");
+                    $info = getimagesize($path);
+                    $isAlpha = false;
+                    $outputPath = "";
+                    switch ($info['mime']) {
+                        case 'image/jpeg':
+                            $image = imagecreatefromjpeg($path);
+                            $outputPath = str_replace(".jpg",".webp",$path);
+                            break;
+                        case 'image/gif':
+                            $isAlpha = true;
+                            $image = imagecreatefromgif($path);
+                            $outputPath = str_replace(".gif",".webp",$path);
+                            break;
+                        case 'image/png':
+                            $isAlpha = true;
+                            $image = imagecreatefrompng($path);
+                            $outputPath = str_replace(".png",".webp",$path);
+                            break;
+                        }
+                    if ($isAlpha) {
+                            imagepalettetotruecolor($image);
+                            imagealphablending($image, true);
+                            imagesavealpha($image, true);
+                        }
+                    imagewebp($image, $outputPath, 70);
+                    unlink($path);
+                    $outputPath = Str::replace('\\','/','\\'.$outputPath);
+                    Log::info($outputPath);
+                    clearstatcache();
+                    $imgNode->setAttribute("src",$outputPath);
+                }
+            }
+            $doc = $doc->saveHTML();
+            $this->text = $doc;
+        }
+    }
+
+    // function afterFetch(){
+    //     if($this->type == 'text'){
+    //         $doc = new \DOMDocument();
+    //         $doc->loadhtml($this->text);
+    //         $imgs = $doc->getElementsByTagName('img');
+    //         foreach($imgs as $imgNode){
+    //             $imgNode->setAttribute("height","350");
+    //         }
+    //         $doc = $doc->saveHTML();
+    //         Log::info($doc);
+    //     }
+    // }
 
 }

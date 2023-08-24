@@ -81,6 +81,31 @@ class Plugin extends PluginBase
                 'tab'   => 'dimsog.blog::lang.settings.name',
                 'label' => 'dimsog.blog::lang.settings.name',
                 'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
+            ],
+            'dimsog.settings.access_fyp' => [
+                'tab' => 'dimsog.blog::lang.settings.name',
+                'label' => 'Access FYP (For Your Page)',
+                'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
+            ],
+            'dimsog.settings.access_featured' => [
+                'tab' => 'dimsog.blog::lang.settings.name',
+                'label' => 'Access Featured News',
+                'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
+            ],
+            'dimsog.settings.breaking' => [
+                'tab' => 'dimsog.blog::lang.settings.name',
+                'label' => 'Access Breaking News',
+                'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
+            ],
+            'dimsog.settings.trending' => [
+                'tab' => 'dimsog.blog::lang.settings.name',
+                'label' => 'Access Trending News',
+                'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
+            ],
+            'dimsog.settings.categories' => [
+                'tab' => 'dimsog.blog::lang.settings.name',
+                'label' => 'Access News Categories',
+                'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
             ]
         ];
     }
@@ -134,42 +159,42 @@ class Plugin extends PluginBase
                         'label'       => 'Add to FYP',
                         'url'         => Backend::url('dimsog/blog/fyp'),
                         'icon'        => 'icon-file-text-o',
-                        'permissions' => ['dimsog.settings.access_posts'],
+                        'permissions' => ['dimsog.settings.access_fyp'],
                         'order'       => 500
                     ],
                     'featured_news' => [
                         'label'       => 'Add to Featured News',
                         'url'         => Backend::url('dimsog/blog/featurednews'),
                         'icon'        => 'icon-file-text-o',
-                        'permissions' => ['dimsog.settings.access_posts'],
+                        'permissions' => ['dimsog.settings.access_featured'],
                         'order'       => 500
                     ],
                     'breaking_news' => [
                         'label'       => 'Add to Breaking News',
                         'url'         => Backend::url('dimsog/blog/breakingnews'),
                         'icon'        => 'icon-file-text-o',
-                        'permissions' => ['dimsog.settings.access_posts'],
+                        'permissions' => ['dimsog.settings.breaking'],
                         'order'       => 500
                     ],
                     'trending_news' => [
                         'label'       => 'Add to Trending News',
                         'url'         => Backend::url('dimsog/blog/trendingnews'),
                         'icon'        => 'icon-file-text-o',
-                        'permissions' => ['dimsog.settings.access_posts'],
+                        'permissions' => ['dimsog.settings.trending'],
                         'order'       => 500
                     ],
                     'categories' => [
                         'label'       => 'dimsog.blog::lang.plugin.navigation.categories',
                         'url'         => Backend::url('dimsog/blog/categories'),
                         'icon'        => 'icon-list-ul',
-                        'permissions' => ['dimsog.settings.access_posts'],
+                        'permissions' => ['dimsog.settings.categories'],
                         'order'       => 500
                     ],
                     'cat_news' => [
                         'label'       => 'Add to Categorized News',
                         'url'         => Backend::url('dimsog/blog/catnews'),
                         'icon'        => 'icon-list-ul',
-                        'permissions' => ['dimsog.settings.access_posts'],
+                        'permissions' => ['dimsog.settings.categories'],
                         'order'       => 500
                     ],
                     'tags' => [

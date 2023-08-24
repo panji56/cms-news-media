@@ -3,6 +3,10 @@
 use BackendMenu;
 use Backend\Classes\Controller;
 use Backend\Facades\BackendAuth;
+use Backend\Models\UserGroup;
+use Backend\Models\User;
+use Illuminate\Support\Facades\Log;
+use Winter\Storm\Support\Facades\DB;
 
 /**
  * Posts Back-end Controller
@@ -45,4 +49,10 @@ class Posts extends Controller
         BackendMenu::setContext('Dimsog.Blog', 'blog', 'new_post');
     }
 
+    public function listExtendQuery($query)
+    {
+        $user_id_in_group = DB::table('backend_users_groups')->whereIn('user_group_id',$this->user->groups()->lists('id'))->lists('user_id');
+        $user_in_group = User::whereIn('id',$user_id_in_group)->lists('login');
+        $query->whereIn('creator',$user_in_group)->get();
+    }
 }
