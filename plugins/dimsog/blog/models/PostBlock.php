@@ -157,7 +157,6 @@ class PostBlock extends Model
         if(!empty($this->text)){
             if($this->type == 'text'){
                 $doc = new \DOMDocument();
-                Log::info($this->text);
                 $doc->loadhtml($this->text);
                 $imgs = $doc->getElementsByTagName('img');
                 foreach($imgs as $imgNode){
@@ -202,7 +201,6 @@ class PostBlock extends Model
                         }else{
                             $outputPath = '/'.$outputPath;
                         }
-                        Log::info($outputPath);
                         clearstatcache();
                         $imgNode->setAttribute("src",$outputPath);
                     }
