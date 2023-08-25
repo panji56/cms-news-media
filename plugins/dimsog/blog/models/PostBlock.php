@@ -169,32 +169,35 @@ class PostBlock extends Model
                         }else{
                             $path = Str::after($path,"/");
                         };
-                        Log::info($path);
-                        $info = getimagesize($path);
-                        $isAlpha = false;
-                        $outputPath = "";
-                        switch ($info['mime']) {
-                            case 'image/jpeg':
-                                $image = imagecreatefromjpeg($path);
-                                $outputPath = str_replace(".jpg",".webp",$path);
-                                break;
-                            case 'image/gif':
-                                $isAlpha = true;
-                                $image = imagecreatefromgif($path);
-                                $outputPath = str_replace(".gif",".webp",$path);
-                                break;
-                            case 'image/png':
-                                $isAlpha = true;
-                                $image = imagecreatefrompng($path);
-                                $outputPath = str_replace(".png",".webp",$path);
-                                break;
-                            }
-                        if ($isAlpha) {
-                                imagepalettetotruecolor($image);
-                                imagealphablending($image, true);
-                                imagesavealpha($image, true);
-                            }
-                        imagewebp($image, $outputPath, 70);
+                        if(file_exists($path)){
+                            $outputPath = str_replace(".jpg",".webp",$path);
+                        }else{
+                            $info = getimagesize($path);
+                            $isAlpha = false;
+                            $outputPath = "";
+                            switch ($info['mime']) {
+                                case 'image/jpeg':
+                                    $image = imagecreatefromjpeg($path);
+                                    $outputPath = str_replace(".jpg",".webp",$path);
+                                    break;
+                                case 'image/gif':
+                                    $isAlpha = true;
+                                    $image = imagecreatefromgif($path);
+                                    $outputPath = str_replace(".gif",".webp",$path);
+                                    break;
+                                case 'image/png':
+                                    $isAlpha = true;
+                                    $image = imagecreatefrompng($path);
+                                    $outputPath = str_replace(".png",".webp",$path);
+                                    break;
+                                }
+                            if ($isAlpha) {
+                                    imagepalettetotruecolor($image);
+                                    imagealphablending($image, true);
+                                    imagesavealpha($image, true);
+                                }
+                            imagewebp($image, $outputPath, 70);
+                        }
                         unlink($path);
                         if(Str::startsWith($outputPath,"storage\\")){
                             $outputPath = Str::replace('\\','/','\\'.$outputPath);
