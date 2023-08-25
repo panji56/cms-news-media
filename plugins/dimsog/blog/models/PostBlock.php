@@ -197,14 +197,14 @@ class PostBlock extends Model
                                     imagesavealpha($image, true);
                                 }
                             imagewebp($image, $outputPath, 70);
+                            unlink($path);
                         }
-                        unlink($path);
+                        clearstatcache();
                         if(Str::startsWith($outputPath,"storage\\")){
                             $outputPath = Str::replace('\\','/','\\'.$outputPath);
                         }else{
                             $outputPath = '/'.$outputPath;
                         }
-                        clearstatcache();
                         $imgNode->setAttribute("src",$outputPath);
                     }
                 }

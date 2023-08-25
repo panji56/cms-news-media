@@ -1,5 +1,6 @@
 <?php if ($record->type === 'text') { ?>
-<?= str_limit($record->text, 400); ?>
+<!-- <?= str_limit($record->text, 400); ?> -->
+<?= $record->text ?>
 <?php } ?>
 
 <?php if ($record->type === 'code') { ?>
