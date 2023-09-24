@@ -169,7 +169,7 @@ class PostBlock extends Model
                         }else{
                             $path = Str::after($path,"/");
                         };
-                        if(file_exists($path)){
+                        if(file_exists($path) && ends_with($path,".webp")){
                             $outputPath = str_replace(".jpg",".webp",$path);
                         }else{
                             $info = getimagesize($path);

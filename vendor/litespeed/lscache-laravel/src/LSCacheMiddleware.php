@@ -6,6 +6,7 @@ use Closure;
 //use Illuminate\Support\Facades\Auth;
 use Backend\Facades\BackendAuth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class LSCacheMiddleware
 {
@@ -33,10 +34,10 @@ class LSCacheMiddleware
         if ($maxage === 0 && $lscache_control === null) {
             return $response;
         }
-
-        if ($guest_only && BackendAuth::check()) {
+        Log::info($request->path());
+        if ($guest_only && BackendAuth::check() && starts_with($request->path(),'backend')) {
             $response->headers->set('X-LiteSpeed-Cache-Control', 'no-cache');
-
+            
             return $response;
         }
 
