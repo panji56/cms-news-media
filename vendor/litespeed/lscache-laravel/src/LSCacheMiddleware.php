@@ -20,6 +20,7 @@ class LSCacheMiddleware
      */
     public function handle($request, Closure $next, string $lscache_control = null)
     {
+        $is_backend = $request->is('backend/*');
         $response = $next($request);
 
         if (!in_array($request->getMethod(), ['GET', 'HEAD']) || !$response->getContent()) {
@@ -34,8 +35,14 @@ class LSCacheMiddleware
         if ($maxage === 0 && $lscache_control === null) {
             return $response;
         }
-        Log::info($request->path());
-        if ($guest_only && BackendAuth::check() && starts_with($request->path(),'backend')) {
+        
+        if ($is_backend){
+            $response->headers->set('X-LiteSpeed-Cache-Control', 'no-cache');
+            
+            return $response;
+        }
+        
+        if ($guest_only && BackendAuth::check()) {
             $response->headers->set('X-LiteSpeed-Cache-Control', 'no-cache');
             
             return $response;
